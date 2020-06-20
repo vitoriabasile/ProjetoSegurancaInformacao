@@ -26,7 +26,7 @@ if(isset($_POST['btn-entrar'])):
   $ma = "ABCDEFGHIJKLMNOPQRSTUVYXWZ"; // $ma contem as letras maiúsculas
   $mi = "abcdefghijklmnopqrstuvyxwz"; // $mi contem as letras minusculas
   $nu = "0123456789"; // $nu contem os números
-  $si = "!@#$%¨&*()_+="; // $si contem os símbolos
+  //$si = "!@#$%¨&*()_+="; // $si contem os símbolos
   $sprovisoria = '';
   $senhaHash = '';
   if ($maiusculas){
@@ -44,10 +44,10 @@ if(isset($_POST['btn-entrar'])):
         $sprovisoria .= str_shuffle($nu);
     }
  
-    if ($simbolos){
-        // se $simbolos for "true", a variável $si é embaralhada e adicionada para a variável $senha
-        $sprovisoria .= str_shuffle($si);
-    }
+    //if ($simbolos){
+    //    // se $simbolos for "true", a variável $si é embaralhada e adicionada para a variável $senha
+    //    $sprovisoria .= str_shuffle($si);
+    //}
 	
 	//$senhaHash = password_hash($sprovisoria, PASSWORD_DEFAULT);
     
@@ -57,14 +57,13 @@ if(isset($_POST['btn-entrar'])):
 	
 	}
     $senha = gerar_senha(6, true, true, true, true);
+	echo "<p style='border:solid;border-radius:10px;border-color:lightblue;width:335px;height:38px;'> Sua senha é: $senha</p>"; 
 	$senha = md5($senha);
-	echo $senha;
 	$sql = "INSERT INTO usuarios (login, nome, senha)VALUE('$login','$nome','$senha')";
 	$resultado = mysqli_query($connect, $sql);
 	
 	
-	
-	//header('Location: index.php');
+	header("refresh: 10;index.php");
 	endif;
 endif;
 ?>

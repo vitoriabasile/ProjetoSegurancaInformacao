@@ -22,14 +22,12 @@ if(isset($_POST['btn-entrar'])):
 		$erros[] = "<p style='border:solid;border-radius:10px;border-color:lightblue;width:335px;height:38px;'> Os campos precisam ser preenchidos! </p>";
 	else:
 		$sql = "SELECT login FROM usuarios WHERE login = '$login'";
-		echo "<li> oi </li>";
 		$resultado = mysqli_query($connect, $sql);
 		
 		if(mysqli_num_rows($resultado) > 0):
 
 			$senha = md5($senha);
 			$sql = "SELECT * FROM usuarios WHERE login = '$login' and senha = '$senha'";
-			echo $sql;
 			$resultado = mysqli_query($connect, $sql);
 			if(mysqli_num_rows($resultado) == 1 ):				
 			  if($senhanova == $senhanovac):
@@ -42,7 +40,7 @@ if(isset($_POST['btn-entrar'])):
 				$_SESSION['logado'] = true;
 				$_SESSION['id_usuario'] = $dados['id'];
 				else:
-				$erros[] = "<p style='border:solid;border-radius:10px;border-color:lightblue;width:335px;height:38px;'> A senha deve conter 6 caracteres, letras minúsculas e maiúsculas! </p>";
+				$erros[] = "<p style='border:solid;border-radius:10px;border-color:lightblue;width:500px;height:38px;'> A senha deve conter 6 caracteres, letras minúsculas e maiúsculas! </p>";
 				endif;
 			  else:
 			  $erros[] = "<p style='border:solid;border-radius:10px;border-color:lightblue;width:335px;height:38px;'>Senhas não conferem! </p>";
